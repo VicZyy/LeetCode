@@ -9,42 +9,13 @@ public class Solution
 {
     public int MaxProfit(int[] prices)
     {
-        int inPrice = 0;
-        bool isIn = false;
-        int index = 0;
-        int profit = 0;
-        while (index < prices.Length)
+        var profit = 0;
+        for(var i = 1; i < prices.Length; i++)
         {
-            //已买入
-            if (isIn)
+            if(prices[i] > prices[i - 1])
             {
-                if (index == prices.Length - 1)
-                {
-                    profit += (prices[index] - inPrice);
-                    break;
-                }
-                //卖出
-                if (prices[index] > prices[index + 1])
-                {
-                    isIn = false;
-                    profit += (prices[index] - inPrice);
-                }
+                profit += prices[i] - prices[i - 1];
             }
-            //未买入
-            else
-            {
-                if (index == prices.Length - 1)
-                {
-                    break;
-                }
-                //买入
-                if (prices[index] < prices[index + 1])
-                {
-                    inPrice = prices[index];
-                    isIn = true;
-                }
-            }
-            index++;
         }
         return profit;
     }
