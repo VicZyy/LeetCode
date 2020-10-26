@@ -14,29 +14,15 @@ public class Solution
         {
             return false;
         }
-        Dictionary<char, int> dictS = new Dictionary<char, int>();
-        foreach (var tempChar in s)
+        int[] charArr = new int[26];
+        for (int i = 0; i < s.Length; i++)
         {
-            if (dictS.ContainsKey(tempChar))
-            {
-                dictS[tempChar]++;
-            }
-            else
-            {
-                dictS.Add(tempChar, 1);
-            }
+            charArr[s[i] - 'a']++;
+            charArr[t[i] - 'a']--;
         }
-        foreach (var tempChar in t)
+        foreach (var num in charArr)
         {
-            if (dictS.ContainsKey(tempChar))
-            {
-                dictS[tempChar]--;
-                if(dictS[tempChar]<0)
-                {
-                    return false;
-                }
-            }
-            else
+            if (num != 0)
             {
                 return false;
             }
